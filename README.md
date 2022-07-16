@@ -28,8 +28,7 @@ The program must be capable of:
 For header files, only appending is allowed.\
 `main.cpp` is forbidden for modification.\
 Must use Boost.Asio and Boost.Beast to work with the network, and Boost.Program to handle command-line arguments.\
-Must use CMake to build the application. Name of the program must be `Weather`.\
-`.gitlab-ci.yml` is forbidden for modification.
+Must use CMake to build the application. Name of the program must be `Weather`.
 
 ### Receiving a token
 1. Open the following site: https://home.openweathermap.org/users/sign_up
@@ -39,14 +38,7 @@ Must use CMake to build the application. Name of the program must be `Weather`.\
 5. Your API will be here: https://home.openweathermap.org/api_keys
 6. Read the API doc: https://openweathermap.org/current
 
-### Setting up a pipeline
-1. Move `.gitlab-ci.yml` into repository root folder.
-2. In the last commit move it back into Weather folder. This commit must contain only changes in confing file.
-
 ## Maintainer
-
-#### Preconditions
-- [ ] Pipeline passes on second-to-last commit
 
 ### Test cases
 - [ ] Shows help
