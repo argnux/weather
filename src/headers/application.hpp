@@ -1,3 +1,6 @@
+#ifndef APPLICATION_H
+#define APPLICATION_H
+
 class Application
 {
 public:
@@ -27,4 +30,12 @@ public:
      * @brief Parse command-line arguments ( Need to use boost::program_options ). Call Client
      * */
     int exec();
+
+private:
+	void help_output();
+
+private:
+	bool mHelp{};
 };
+
+#endif // APPLICATION_H
