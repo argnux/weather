@@ -1,3 +1,7 @@
+#pragma once
+
+#include "WeatherSettings.hpp"
+
 class Application
 {
 public:
@@ -27,4 +31,10 @@ public:
      * @brief Parse command-line arguments ( Need to use boost::program_options ). Call Client
      * */
     int exec();
+
+private:
+	void help_output();
+
+private:
+  	WeatherSettings mSettings;
 };
