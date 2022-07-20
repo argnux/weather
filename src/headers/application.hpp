@@ -1,5 +1,7 @@
-#ifndef APPLICATION_H
-#define APPLICATION_H
+#ifndef APPLICATION_HPP
+#define APPLICATION_HPP
+
+#include "ArgumentsParser.hpp"
 
 class Application
 {
@@ -35,7 +37,7 @@ private:
 	void help_output();
 
 private:
-	bool mHelp{};
+  	ArgumentsParser mArgs;
 };
 
-#endif // APPLICATION_H
+#endif // APPLICATION_HPP

@@ -2,22 +2,16 @@
 
 #include <iostream>
 
-Application::Application(int argc, char* argv[])
+Application::Application(int argc, char* argv[]) : mArgs(argc, argv)
 {
-    if (argc == 1) {
-        mHelp = true;
-    } else {
-        if (argv[1] == "-h" || argv[1] == "--help") {
-            mHelp = true;
-        }
-    }
+
 }
 
 void Application::help_output()
 {
     std::cout << "Options:\n"
       << "  -h [ --help ]         Show help\n"
-      << "  -c [ --city ] arg     Enter city (If the city name is divided into several\n"
+      << "  -c [ --city ] arg     Enter city (If the city name is divided into several \n"
       << "                        words - use _ instead of space)\n"
       << "  -t [ --token ] arg    Enter token\n"
       << "  -a [ --address ] arg  Enter host address\n"
@@ -26,7 +20,7 @@ void Application::help_output()
 
 int Application::exec()
 {
-    if (mHelp) {
+    if (mArgs.isSet("-h") || mArgs.isSet("--help")) {
         help_output();
         return 0;
     }
