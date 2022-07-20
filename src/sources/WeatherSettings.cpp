@@ -12,7 +12,17 @@ const std::unordered_map<std::string, NoArgHandle> NoArgs {
 
 using OneArgHandle = std::function<void(WeatherSettings&, const std::string&)>;
 const std::unordered_map<std::string, OneArgHandle> OneArgs {
+    {"--city", [](WeatherSettings &s, const std::string& arg) { s.city = arg; }},
+    {"-c", [](WeatherSettings &s, const std::string& arg) { s.city = arg; }},
 
+    {"--token", [](WeatherSettings &s, const std::string& arg) { s.token = arg; }},
+    {"-t", [](WeatherSettings &s, const std::string& arg) { s.token = arg; }},
+
+    {"--address", [](WeatherSettings &s, const std::string& arg) { s.address = arg; }},
+    {"-a", [](WeatherSettings &s, const std::string& arg) { s.address = arg; }},
+
+    {"--port", [](WeatherSettings &s, const std::string& arg) { s.port = arg; }},
+    {"-p", [](WeatherSettings &s, const std::string& arg) { s.port = arg; }}
 };
 
 WeatherSettings parse_settings(int argc, char* argv[])
