@@ -29,6 +29,10 @@ WeatherSettings parse_settings(int argc, char* argv[])
 {
     WeatherSettings settings;
 
+    if (argc == 1) {
+        settings.help = true;
+    }
+
     // argv[0] is the program name
     for (int i = 1; i < argc; i++) {
         std::string opt = argv[i];
