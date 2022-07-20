@@ -1,5 +1,4 @@
-#ifndef ARGUMENTS_PARSER_HPP
-#define ARGUMENTS_PARSER_HPP
+#pragma once
 
 #include <unordered_set>
 #include <string>
@@ -12,5 +11,3 @@ public:
 private:
     std::unordered_set<std::string> mArgs;
 };
-
-#endif // ARGUMENTS_PARSER_HPP

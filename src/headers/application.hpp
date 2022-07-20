@@ -1,5 +1,4 @@
-#ifndef APPLICATION_HPP
-#define APPLICATION_HPP
+#pragma once
 
 #include "ArgumentsParser.hpp"
 
@@ -39,5 +38,3 @@ private:
 private:
   	ArgumentsParser mArgs;
 };
-
-#endif // APPLICATION_HPP
