@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ArgumentsParser.hpp"
+#include "WeatherSettings.hpp"
 
 class Application
 {
@@ -36,5 +36,5 @@ private:
 	void help_output();
 
 private:
-  	ArgumentsParser mArgs;
+  	WeatherSettings mSettings;
 };

@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-Application::Application(int argc, char* argv[]) : mArgs(argc, argv)
+Application::Application(int argc, char* argv[]) : mSettings{parse_settings(argc, argv)}
 {
 
 }
@@ -20,7 +20,7 @@ void Application::help_output()
 
 int Application::exec()
 {
-    if (mArgs.isSet("-h") || mArgs.isSet("--help")) {
+    if (mSettings.help) {
         help_output();
         return 0;
     }
