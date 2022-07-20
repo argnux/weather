@@ -1,10 +1,26 @@
 #include "application.hpp"
 
 #include <iostream>
+#include <fstream>
 
 Application::Application(int argc, char* argv[]) : mSettings{parse_settings(argc, argv)}
 {
+	if (mSettings.help) {
+		return;
+	}
 
+	if (!mSettings.token.has_value()) {
+		std::ifstream token_data;
+		token_data.open("token.txt");
+		if (!token_data) {
+			std::cerr << "No file!" << std::endl;
+			return;
+		}
+
+		std::string token;
+		token_data >> token;
+		mSettings.token = token;
+	}
 }
 
 void Application::help_output()
