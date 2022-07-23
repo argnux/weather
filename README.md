@@ -41,10 +41,10 @@ Must use CMake to build the application. Name of the program must be `Weather`.
 ## Maintainer
 
 ### Test cases
-- [ ] Shows help
-- [ ] Can read city from a console
-- [ ] Can read token from a console
-- [ ] Can read token from a file
+- [x] Shows help
+- [x] Can read city from a console
+- [x] Can read token from a console
+- [x] Can read token from a file
 - [ ] Prints weather in existing city
 - [ ] Uses default address and port, can select other address and port
 - [ ] Prints correct message when a connection could not be established
@@ -53,10 +53,10 @@ Must use CMake to build the application. Name of the program must be `Weather`.
 
 ### Code review
 Technologies used:
-- [ ] CMake for building
+- [x] CMake for building
 - [ ] boost::asio
 - [ ] boost::beast
-- [ ] boost::program
+- [x] boost::program
 
 Style:
 - [ ] No raw pointers used and no potential memory leaks exist
