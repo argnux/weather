@@ -2,42 +2,39 @@
 
 #include <iostream>
 #include <fstream>
+#include <boost/dll.hpp>
 
-Application::Application(int argc, char* argv[]) : mSettings{parse_settings(argc, argv)}
+Application::Application(int argc, char* argv[]) : mDesc("Options")
 {
-	if (mSettings.help) {
-		return;
-	}
-
-	if (!mSettings.token.has_value()) {
-		std::ifstream token_data;
-		token_data.open("token.txt");
-		if (!token_data) {
-			std::cerr << "No file!" << std::endl;
-			return;
-		}
-
-		std::string token;
-		token_data >> token;
-		mSettings.token = token;
-	}
-}
-
-void Application::help_output()
-{
-    std::cout << "Options:\n"
-      << "  -h [ --help ]         Show help\n"
-      << "  -c [ --city ] arg     Enter city (If the city name is divided into several \n"
-      << "                        words - use _ instead of space)\n"
-      << "  -t [ --token ] arg    Enter token\n"
-      << "  -a [ --address ] arg  Enter host address\n"
-      << "  -p [ --port ] arg     Enter port" << std::endl;
+	mDesc.add_options()
+		("help,h", "Show help")
+		("city,c", po::value<std::string>(), "Enter city (If the city name is divided into several words - use _ instead of space)")
+		("token,t", po::value<std::string>(), "Enter token")
+		("address,a", po::value<std::string>(), "Enter host address")
+		("port,p", po::value<std::string>(), "Enter port")
+	;
+	po::parsed_options parsed = po::command_line_parser(argc, argv).options(mDesc).allow_unregistered().run();
+	po::store(parsed, mVariablesMap);
+	po::notify(mVariablesMap);
 }
 
 int Application::exec()
 {
-    if (mSettings.help) {
-        help_output();
-        return 0;
-    }
+	if (mVariablesMap.count("help") || mVariablesMap.size() == 0) {
+		std::cout << mDesc << std::endl;
+		return 0;
+	}
+
+	std::string token;
+	if (!mVariablesMap.count("token")) {
+		std::ifstream token_data;
+		token_data.open(boost::dll::program_location().parent_path().string() + "/token.txt");
+		if (!token_data) {
+			std::cerr << "There is no token!" << std::endl;
+			return -1;
+		}
+		token_data >> token;
+	} else {
+		token = mVariablesMap["token"].as<std::string>();
+	}
 }

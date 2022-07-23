@@ -1,6 +1,7 @@
 #pragma once
 
-#include "WeatherSettings.hpp"
+#include <boost/program_options.hpp>
+namespace po = boost::program_options;
 
 class Application
 {
@@ -33,8 +34,6 @@ public:
     int exec();
 
 private:
-	void help_output();
-
-private:
-  	WeatherSettings mSettings;
+	po::options_description mDesc;
+	po::variables_map mVariablesMap;
 };

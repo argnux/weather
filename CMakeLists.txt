@@ -11,4 +11,12 @@ file(GLOB SOURCES
     src/sources/*.cpp
 )
 
+find_package(Boost COMPONENTS system filesystem program_options REQUIRED)
+
 add_executable(Weather ${SOURCES})
+
+target_link_libraries(Weather
+                        dl
+                        Boost::system
+                        Boost::filesystem
+                        Boost::program_options)
