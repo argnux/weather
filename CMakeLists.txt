@@ -12,11 +12,13 @@ file(GLOB SOURCES
 )
 
 find_package(Boost COMPONENTS system filesystem program_options REQUIRED)
+find_package(Threads REQUIRED)
 
 add_executable(Weather ${SOURCES})
 
 target_link_libraries(Weather
                         dl
+                        Threads::Threads
                         Boost::system
                         Boost::filesystem
                         Boost::program_options)
