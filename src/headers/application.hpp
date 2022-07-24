@@ -3,6 +3,8 @@
 #include <boost/program_options.hpp>
 namespace po = boost::program_options;
 
+#include "client.hpp"
+
 class Application
 {
 public:
@@ -34,6 +36,8 @@ public:
     int exec();
 
 private:
-	po::options_description mDesc;
-	po::variables_map mVariablesMap;
+	po::options_description m_desc;
+	po::variables_map m_variables_map;
+
+	NetworkLayer::ContextPtr m_context{};
 };

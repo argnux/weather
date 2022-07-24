@@ -1,5 +1,8 @@
 #pragma once
 
+#include <boost/beast.hpp>
+#include <boost/asio.hpp>
+
 namespace NetworkLayer
 {
     namespace beast = boost::beast;
@@ -22,7 +25,7 @@ namespace NetworkLayer
          * @param context_ptr - smart pointer to io_context
          * @param connectionIP - structure that contains host and port for connection
          * */
-        Network(const ContextPtr & context_ptr, IPAddress connectionIP);
+        Network(const ContextPtr &context_ptr, IPAddress connectionIP);
 
         /**
          * @brief Connection to server
@@ -33,7 +36,7 @@ namespace NetworkLayer
         /**
          * @brief Prepare request and call send
          * */
-        void send(const std::string & city_name, const std::string & token);
+        void send(const std::string &city_name, const std::string &token);
 
         /**
          * @brief Convert response to string
@@ -47,12 +50,16 @@ namespace NetworkLayer
          * @brief Send request to connectionIP
          * @param request - ready for send request
          * */
-        void send(const http::request<http::string_body> & request);
+        void send(const http::request<http::string_body> &request);
 
         /**
          * @brief Receive server response
          * @returns server response
          * */
         http::response<http::dynamic_body> p_receive();
+    
+    private:
+        const ContextPtr m_context;
+        IPAddress m_ip;
     };
 }
