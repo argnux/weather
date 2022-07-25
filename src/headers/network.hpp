@@ -2,12 +2,15 @@
 
 #include <boost/beast.hpp>
 #include <boost/asio.hpp>
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
 
 namespace NetworkLayer
 {
     namespace beast = boost::beast;
     namespace http = beast::http;
     namespace ip = boost::asio::ip;
+    namespace pt = boost::property_tree;
     using tcp = ip::tcp;
     using ContextPtr = std::shared_ptr<boost::asio::io_context>;
 
@@ -61,5 +64,6 @@ namespace NetworkLayer
     private:
         const ContextPtr m_context;
         IPAddress m_ip;
+        beast::tcp_stream m_stream;
     };
 }

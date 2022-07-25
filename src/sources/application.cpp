@@ -4,7 +4,7 @@
 #include <fstream>
 #include <boost/dll.hpp>
 
-Application::Application(int argc, char* argv[]) : m_desc("Options")
+Application::Application(int argc, char* argv[]) : m_desc("Options"), m_context(std::make_shared<boost::asio::io_context>())
 {
 	m_desc.add_options()
 		("help,h", "Show help")
@@ -58,4 +58,6 @@ int Application::exec()
 	client.setCity(city);
 	client.setToken(token);
 	client.process();
+
+	return 0;
 }

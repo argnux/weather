@@ -39,5 +39,5 @@ private:
 	po::options_description m_desc;
 	po::variables_map m_variables_map;
 
-	NetworkLayer::ContextPtr m_context{};
+	NetworkLayer::ContextPtr m_context;
 };
