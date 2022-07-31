@@ -11,13 +11,12 @@ on:
 
 jobs:
   build:
-    name: 'Testing on Linux'
+    name: 'Testing on Linux (without aoyako/boost_app docker image)'
     runs-on: ubuntu-latest
     environment: token
 
     steps:
       - uses: actions/checkout@v3
-      - uses: docker://aoyako/boost_app:latest
 
       - name: 'Update packages'
         run: |
