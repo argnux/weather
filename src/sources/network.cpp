@@ -1,7 +1,5 @@
 #include "network.hpp"
 
-#include <iostream> // FIXME temporarily, only to log
-
 namespace NetworkLayer {
     Network::Network(const ContextPtr &context_ptr, IPAddress connectionIP)
         : m_context(context_ptr), m_ip(connectionIP), m_stream(m_context->get_executor())
@@ -11,7 +9,6 @@ namespace NetworkLayer {
 
     bool Network::start()
     {
-        std::cout << "Network::start()" << std::endl;
         tcp::resolver resolver(m_context->get_executor());
         auto const results = resolver.resolve(m_ip.host, m_ip.port);
 
@@ -23,7 +20,6 @@ namespace NetworkLayer {
 
     void Network::send(const std::string &city_name, const std::string &token)
     {
-        std::cout << "Network::send(" << city_name << ", " << token << ")" << std::endl;
         const std::string target = "/data/2.5/weather?q=" + city_name + "&appid=" + token + "&units=metric";
         http::request<http::string_body> request{http::verb::get, target, 10};
 
@@ -32,7 +28,6 @@ namespace NetworkLayer {
 
     std::string Network::receive()
     {
-        std::cout << "Network::receive()" << std::endl;
         auto response = p_receive();
 
         auto json_result = beast::buffers_to_string(response.body().data());
@@ -43,23 +38,20 @@ namespace NetworkLayer {
 
         std::ostringstream os;
         os << "City: " << tree.get<std::string>("name") << '\n';
-        os << "Temperature: " << tree.get<std::string>("main.temp") << '\n';
-        os << "Wind's speed: " << tree.get<std::string>("wind.speed") << '\n';
-        os << "Wind's direction: " << tree.get<std::string>("wind.deg") << '\n';
+        os << "Temperature: " << tree.get<std::string>("main.temp") << "°C" << '\n';
+        os << "Wind's speed: " << tree.get<std::string>("wind.speed") << " meter/sec" << '\n';
+        os << "Wind's direction: " << tree.get<std::string>("wind.deg") << "°";
 
         return os.str();
     }
 
     void Network::send(const http::request<http::string_body> &request)
     {
-        std::cout << "Network::send()" << std::endl;
         http::write(m_stream, request);
     }
 
     http::response<http::dynamic_body> Network::p_receive()
     {
-        std::cout << "Network::p_receive()" << std::endl;
-
         beast::flat_buffer buffer;
         http::response<http::dynamic_body> response;
 

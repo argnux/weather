@@ -47,12 +47,6 @@ int Application::exec()
 
 	host = m_variables_map.count("address") ? m_variables_map["address"].as<std::string>() : "api.openweathermap.org";
 	port = m_variables_map.count("port") ? m_variables_map["port"].as<std::string>() : "80";
-
-	// FIXME remove logs later
-	std::cout << "ARGUMENTS:\n"
-			  << "city: " << city << '\n'
-			  << "address: " << host << '\n'
-			  << "port: " << port << '\n';
 	
 	ClientLayer::Client client(m_context, {host, port});
 	client.setCity(city);
