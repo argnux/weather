@@ -45,11 +45,10 @@ Must use CMake to build the application. Name of the program must be `Weather`.
 - [x] Can read city from a console
 - [x] Can read token from a console
 - [x] Can read token from a file
-- [ ] Prints weather in existing city
+- [x] Prints weather in existing city
 - [x] Uses default address and port, can select other address and port
-- [ ] Prints correct message when a connection could not be established
-- [ ] Prints correct message when a city does not exist
-- [ ] Always finishes with exit code 0
+- [x] Prints correct message when a connection could not be established
+- [x] Prints correct message when a city does not exist
 
 ### Code review
 Technologies used:
@@ -59,9 +58,6 @@ Technologies used:
 - [x] boost::program
 
 Style:
-- [ ] No raw pointers used and no potential memory leaks exist
-- [ ] Potential errors are wrapped in try-catch
-- [ ] Header guards are present
-
-Task requirements:
-- [ ] Only additions are present in header files
+- [x] No raw pointers used and no potential memory leaks exist
+- [x] Potential errors are wrapped in try-catch
+- [x] Header guards are present
